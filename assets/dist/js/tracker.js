@@ -33,7 +33,12 @@ function trackPageview() {
     return;
   }
 
-  // Respect "Do Not Track" requests
+   // ignore prerendered pages
+  if( 'visibilityState' in document && document.visibilityState === 'prerender' ) {
+    return;
+  }
+
+  // respect "Do Not Track" requests
   if(navigator.DoNotTrack === "1") {
     return;
   }
